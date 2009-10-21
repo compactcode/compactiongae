@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" defaultButton="{loadButton}">
+	<mx:Panel id="panel" title="Contacts" width="100%" layout="horizontal">
+		<mx:DataGrid id="contactList" width="100%">
+			<mx:columns>
+				<mx:DataGridColumn dataField="id" headerText="Id" />
+				<mx:DataGridColumn dataField="name" headerText="Name" />
+				<mx:DataGridColumn dataField="email" headerText="Email" />
+			</mx:columns>
+		</mx:DataGrid>
+		<mx:VBox>
+			<mx:Button id="loadButton" label="Load" width="100%" />
+			<mx:Button id="createButton" label="Create" width="100%"/>
+			<mx:Button id="deleteButton" label="Delete" width="100%"/>
+		</mx:VBox>
+	</mx:Panel>
+</mx:VBox>

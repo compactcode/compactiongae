@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:view="org.compaction.view.*" 
+	xmlns:binder="org.compaction.binder.*" 
+	xmlns:model="org.compaction.model.*">
+	<mx:VBox width="500">
+		<view:MessageBox id="statusView" width="100%" height="30"/>
+		<view:ContactListView id="listView" width="100%"/>
+		<view:ContactEditView id="editView" width="100%"/>
+	</mx:VBox>
+	<model:ContactModel id="model" list="{listView.contactList}"/>
+	<binder:ButtonBinder source="{model.load}" target="{listView.loadButton}" />
+	<binder:ButtonBinder source="{model.create}" target="{listView.createButton}" />
+	<binder:ButtonBinder source="{model.destroy}" target="{listView.deleteButton}" />
+	<binder:ListBinder source="{model.editModel.edit}" target="{listView.contactList}" />
+	<binder:FormBinder source="{model.editModel}" target="{editView.contactForm}" />
+	<mx:Binding source="model.messages.message" destination="statusView.message" />
+	<mx:Binding source="model.status.executing" destination="statusView.spinner.playing" />
+</mx:Application>

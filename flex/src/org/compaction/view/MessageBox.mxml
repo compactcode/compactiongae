@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	paddingLeft="5" 
+	paddingRight="5" 
+	paddingTop="5" 
+	paddingBottom="5"
+	horizontalAlign="center" xmlns:controls="controls.*">
+	<mx:Script>
+		<![CDATA[
+			public function set message(value:String): void {
+				if(value && value.indexOf("info:") == 0) {
+					currentState = "info";
+					messageText.text = value.substring(5, value.length);
+				}
+				else if(value && value.indexOf("error:") == 0) {
+					currentState = "error";
+					messageText.text = value.substring(6, value.length);
+				}
+				else {
+					currentState = null;
+					messageText.text = "";
+				}				
+			}
+		]]>
+	</mx:Script>
+	<mx:states>
+		<mx:State name="info">
+			<mx:SetStyle name="backgroundColor" value="#FEFED9"/>
+			<mx:SetStyle name="borderStyle" value="solid"/>
+			<mx:SetStyle name="borderColor" value="#A7A900"/>
+			<mx:SetStyle target="{messageText}" name="color" value="#A7A900"/>
+		</mx:State>
+		<mx:State name="error">
+			<mx:SetStyle name="backgroundColor" value="#F0C6C6"/>
+			<mx:SetStyle name="borderStyle" value="solid"/>
+			<mx:SetStyle name="borderColor" value="#DF0000"/>
+			<mx:SetStyle target="{messageText}" name="color" value="#DF0000"/>
+		</mx:State>
+	</mx:states>
+	<mx:transitions>
+		<mx:Transition fromState="*" toState="*">
+			<mx:Fade id="fade" target="{this}" />
+		</mx:Transition>
+	</mx:transitions>
+	<controls:Spinner id="spinner" size="20" autoPlay="false" visible="false" />
+	<mx:Label id="messageText" fontWeight="bold" />
+</mx:HBox>
